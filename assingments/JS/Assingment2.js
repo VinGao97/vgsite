@@ -1,207 +1,94 @@
-var suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
-var values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
-var deck = new Array();
-var players = new Array();
-var currentPlayer = 0;
+function deck() {
 
-function createDeck()
-{
-    deck = new Array();
-    for (var i = 0 ; i < values.length; i++)
-    {
-        for(var x = 0; x < suits.length; x++)
-        {
-            var weight = parseInt(values[i]);
-            if (values[i] == "J" || values[i] == "Q" || values[i] == "K")
-                weight = 10;
-            if (values[i] == "A")
-                weight = 11;
-            var card = { Value: values[i], Suit: suits[x], Weight: weight };
-            deck.push(card);
+    function card(r,s) {
+        this.rank = r;
+        this.suit = s;
+    }
+
+    this.order = [
+    new card('A','spades'), new card('2','spades'), new card('3','spades'), new card('4','spades'), new card('5','spades'),
+    new card('6','spades'), new card('7','spades'), new card('8','spades'), new card('9','spades'), new card('10','spades'),
+    new card('J','spades'), new card('Q','spades'), new card('K','spades'),
+    new card('A','clubs'), new card('2','clubs'), new card('3','clubs'), new card('4','clubs'), new card('5','clubs'),
+    new card('6','clubs'), new card('7','clubs'), new card('8','clubs'), new card('9','clubs'), new card('10','clubs'),
+    new card('J','clubs'), new card('Q','clubs'), new card('K','clubs'),
+    new card('A','hearts'), new card('2','hearts'), new card('3','hearts'), new card('4','hearts'), new card('5','hearts'),
+    new card('6','hearts'), new card('7','hearts'), new card('8','hearts'), new card('9','hearts'), new card('10','hearts'),
+    new card('J','hearts'), new card('Q','hearts'), new card('K','hearts'),
+    new card('A','diams'), new card('2','diams'), new card('3','diams'), new card('4','diams'), new card('5','diams'),
+    new card('6','diams'), new card('7','diams'), new card('8','diams'), new card('9','diams'), new card('10','diams'),
+    new card('J','diams'), new card('Q','diams'), new card('K','diams')
+    ];
+
+    this.shuffle = function() {
+        for (var i = 0; i < this.order.length; i++) {
+            var j = i;
+            while (j==i) {
+                j = Math.floor(Math.random() * this.order.length);
+            }
+            var tmp = this.order[i];
+            this.order[i] = this.order[j];
+            this.order[j] = tmp;
         }
-    }
+    };
+
+    this.shuffle();
+
+    this.top_card = function() {
+        if(this.order.length==0)
+            return false;
+        this.order.shift();
+        return true;
+    };
 }
 
-function createPlayers(num)
-{
-    players = new Array();
-    for(var i = 1; i <= num; i++)
-    {
-        var hand = new Array();
-        var player = { Name: 'Player ' + i, ID: i, Points: 0, Hand: hand };
-        players.push(player);
-    }
-}
+$(document).ready(function(){
+                    var d;
 
-function createPlayersUI()
-{
-    document.getElementById('players').innerHTML = '';
-    for(var i = 0; i < players.length; i++)
-    {
-        var div_player = document.createElement('div');
-        var div_playerid = document.createElement('div');
-        var div_hand = document.createElement('div');
-        var div_points = document.createElement('div');
+                    function cardDOM(c,m) {
+                        if(c) {
+                            return $('<div class="card ' + c.suit + '"' + (m?' style="margin-right:'+m+';"':'') + '><div class="top_rank">' + c.rank + '</div><div class="top_suit">&' + c.suit + ';</div><div class="suit">&' + c.suit + ';</div><div class="bottom_suit">&' + c.suit + ';</div><div class="bottom_rank">' + c.rank + '</div></div>');
+                        }
+                    }
 
-        div_points.className = 'points';
-        div_points.id = 'points_' + i;
-        div_player.id = 'player_' + i;
-        div_player.className = 'player';
-        div_hand.id = 'hand_' + i;
+                    $("#new_deck").click(function(){
+                        $("#cards").html('');
+                        d = new deck();
+                        d.order;
+                        for(i=0;i<d.order.length;i++) {
+                            $('#cards').prepend(cardDOM(d.order[i]));
+                        }
+                        $("#cards .card").animate({marginRight:"-200px"},2000,"swing");
+                        $("#shuffle_deck").addClass("enabled");
+                        $("#top_card_deck").addClass("enabled");
+                        return false;
+                    });
+                    $("#shuffle_deck").click(function(){
+                        if(d) {
+                            d.shuffle();
+                            $("#cards").html('');
+                            for(i=0;i<d.order.length;i++) {
+                                $('#cards').prepend(cardDOM(d.order[i],"-107px"));
+                            }
+                        }
+                        return false;
+                    });
+                    $("#top_card_deck").click(function(){
+                        if(d) {
+                            if(d.top_card()) {
+                                $("#cards .card:last").css('position','relative').animate({marginTop:"100px",marginLeft:"300px"},"slow","swing",function(){
+                                    $("#cards .card:last").remove();
+                                });
 
-        div_playerid.innerHTML = 'Player ' + players[i].ID;
-        div_player.appendChild(div_playerid);
-        div_player.appendChild(div_hand);
-        div_player.appendChild(div_points);
-        document.getElementById('players').appendChild(div_player);
-    }
-}
-
-function shuffle()
-{
-    for (var i = 0; i < 1000; i++)
-    {
-        var location1 = Math.floor((Math.random() * deck.length));
-        var location2 = Math.floor((Math.random() * deck.length));
-        var tmp = deck[location1];
-
-        deck[location1] = deck[location2];
-        deck[location2] = tmp;
-    }
-}
-
-function startblackjack()
-{
-    document.getElementById('btnStart').value = 'Restart';
-    document.getElementById("status").style.display="none";
-    currentPlayer = 0;
-    createDeck();
-    shuffle();
-    createPlayers(2);
-    createPlayersUI();
-    dealHands();
-    document.getElementById('player_' + currentPlayer).classList.add('active');
-}
-
-function dealHands()
-{
-    for(var i = 0; i < 2; i++)
-    {
-        for (var x = 0; x < players.length; x++)
-        {
-            var card = deck.pop();
-            players[x].Hand.push(card);
-            renderCard(card, x);
-            updatePoints();
-        }
-    }
-
-    updateDeck();
-}
-
-function renderCard(card, player)
-{
-    var hand = document.getElementById('hand_' + player);
-    hand.appendChild(getCardUI(card));
-}
-
-function getCardUI(card)
-{
-    var el = document.createElement('div');
-    var icon = '';
-    if (card.Suit == 'Hearts')
-    icon='&hearts;';
-    else if (card.Suit == 'Spades')
-    icon = '&spades;';
-    else if (card.Suit == 'Diamonds')
-    icon = '&diams;';
-    else
-    icon = '&clubs;';
-    
-    el.className = 'card';
-    el.innerHTML = card.Value + '<br/>' + icon;
-    return el;
-}
-
-function getPoints(player)
-{
-    var points = 0;
-    for(var i = 0; i < players[player].Hand.length; i++)
-    {
-        points += players[player].Hand[i].Weight;
-    }
-    players[player].Points = points;
-    return points;
-}
-
-function updatePoints()
-{
-    for (var i = 0 ; i < players.length; i++)
-    {
-        getPoints(i);
-        document.getElementById('points_' + i).innerHTML = players[i].Points;
-    }
-}
-
-function hitMe()
-{
-    var card = deck.pop();
-    players[currentPlayer].Hand.push(card);
-    renderCard(card, currentPlayer);
-    updatePoints();
-    updateDeck();
-    check();
-}
-
-function stay()
-{
-    if (currentPlayer != players.length-1) {
-        document.getElementById('player_' + currentPlayer).classList.remove('active');
-        currentPlayer += 1;
-        document.getElementById('player_' + currentPlayer).classList.add('active');
-    }
-
-    else {
-        end();
-    }
-}
-
-function end()
-{
-    var winner = -1;
-    var score = 0;
-
-    for(var i = 0; i < players.length; i++)
-    {
-        if (players[i].Points > score && players[i].Points < 22)
-        {
-            winner = i;
-        }
-
-        score = players[i].Points;
-    }
-
-    document.getElementById('status').innerHTML = 'Winner: Player ' + players[winner].ID;
-    document.getElementById("status").style.display = "inline-block";
-}
-
-function check()
-{
-    if (players[currentPlayer].Points > 21)
-    {
-        document.getElementById('status').innerHTML = 'Player: ' + players[currentPlayer].ID + ' LOST';
-        document.getElementById('status').style.display = "inline-block";
-        end();
-    }
-}
-
-function updateDeck()
-{
-    document.getElementById('deckcount').innerHTML = deck.length;
-}
-
-window.addEventListener('load', function(){
-    createDeck();
-    shuffle();
-    createPlayers(1);
-});
+                            } else {
+                                d = null;
+                                $("#shuffle_deck").removeClass("enabled");
+                                $("#top_card_deck").removeClass("enabled");
+                                if(confirm("You don't have any cards left. Would you like a new Deck?")) {
+                                    $("#new_deck").click();
+                                }
+                            }
+                        }
+                        return false;
+                    });
+                });

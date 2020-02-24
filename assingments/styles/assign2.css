@@ -1,118 +1,75 @@
-.game
-{
-    width: 720px;
-    border: solid 1px #ddd;
-    margin: 0 auto;
-   background: #3ac7fe;
-border: solid 10px;
-text-align:center;
-min-height:430px;
+html {
+  background-color:#0E0E0E;
 }
 
-.btn{
-    border:none;
-    padding: 10px 30px;
-    border-radius:10px;
-    cursor:pointer;
+body {
+  font-family:helvetica, ariel, san-serif;
+  font-size:16px;
+  margin:0;
+  padding:0;
 }
 
-.btn:hover{
-    background:dodgerblue;
+.actions {
+  border-bottom:3px solid #686868;
+  margin-bottom:20px;
+  padding:0.6em 0.7em;
 }
 
-.game h3
-{
-padding: 10px;
-background:black;
-color:white;
+.actions a, .actions a:active, .actions a:visited, .actions a:hover {
+  text-decoration:none;
+  color:#686868;
+  background-color:#292929;
+  padding:0.3em 0.7em;
+  margin-right:10px;
+  cursor:default;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
 }
 
-.game .game-body
-{
-padding: 20px;
+.actions a.enabled {
+  color:#ffffff;
+  cursor:pointer;
 }
 
-.game .game-options
-{
-text-align:center;
-}
-.game .card{
-    width: 50px;
-    height: 80px;
-    padding: 10px;
-    border: solid 1px #808080;
-    background-color: white;
-    display: inline-block;
-    border-radius: 10px;
-    font-size: 10pt;
-    text-align: center;
-    margin: 3px;
-    border:solid 3px;
+.card {
+  align-items: center;
+  width:100px;
+  border:1px solid #000000;
+  background-color:#ffffff;
+  padding:10px;
+  border-radius:8px;
+  -moz-border-radius:8px;
+  -webkit-border-radius:8px;
+  -moz-box-shadow:-1px 0 5px #000000;
+  -webkit-box-shadow:-1px 0 5px #000000;
+  float:left;
+  margin:0 -131px 20px 10px;
 }
 
-.game .status
-{
-    display: inline-block;
-background: gold;
-border: solid 5px white;
-border-radius: 10px;
-padding: 5px 20px;
-margin: 0 auto;
-margin-top: 10px;
-display:none;
+.clubs, .spades {
+  color:#333333;
 }
 
-
-.players{
-       width: 500px;
-margin: 0 auto;
-margin-top: 20px;
-text-align: center;
+.hearts, .diams {
+  color:#8A1213;
 }
 
-.player{
-    width: 40%;
-    border: solid 5px #f5f5f5;
-    border-radius: 10px;
-    padding: 10px;
-    display: inline-block;
-    margin:1%;
-    vertical-align: top;
-    background:#f5f5f5;
+.card .suit {
+  text-align:center;
+  font-size:50px;
+  height:70px;
+  line-height:70px;
 }
 
-.player.active{
-    border: solid 5px #222;
+.card .bottom_suit {
+  text-align:right;
 }
 
-.points{
-    text-align: center;
-    font-size: 20pt;
-    font-weight: bold;
-    margin: 10px;
+.card .bottom_rank {
+  text-align:right;
 }
 
-.deck{
-    float:left;
-    background: white;
-    color:#222;
-    padding: 10px;
-    border-radius:10px;
-    border: double 5px;
+#cards {
+  margin-right:110px
 }
-
-.btn
-{
-    background:#222;
-    color:white !important;
-    border-radius:0px;
-}
-
-img{
-  width: 700px;
-
-}
-a{
-  color: inherit;
-}
-
