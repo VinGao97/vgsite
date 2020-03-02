@@ -71,5 +71,6 @@ body {
 }
 
 #cards {
-  margin-right:110px
+  display: inline-block;
+  margin-right:110px;
 }
