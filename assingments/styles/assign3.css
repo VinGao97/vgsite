@@ -10,3 +10,6 @@
   border: 1px solid;
   background-color: green;
 }
+a{
+  color: inherit;
+}

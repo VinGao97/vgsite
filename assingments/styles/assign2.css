@@ -74,3 +74,6 @@ body {
   display: inline-block;
   margin-right:110px;
 }
+a{
+  color: inherit;
+}
