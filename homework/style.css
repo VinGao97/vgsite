@@ -1,0 +1,31 @@
+.form{
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 30px;
+}
+/* .form-name{
+  font-size: 30px;
+}
+.form-email{
+  font-size: 30px;
+}
+.form-msg{
+  font-size: 30px;
+} */
+/* .doc{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 500px;
+  text-align: center;
+} */
+.block{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 500px;
+  text-align: center;
+
+}

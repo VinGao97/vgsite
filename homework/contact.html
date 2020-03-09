@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <form action="/contact" method="post" class="form">
+    <div class="form-name">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="user_name">
+    </div>
+    <div class="form-email">
+      <label for="mail">E-mail:</label>
+      <input type="mail" name="user_email">
+    </div>
+    <div class="form-msg">
+      <label for="msg">Message:</label>
+      <textarea name="user_message" id="msg" cols="30" rows="5"></textarea>
+    </div>
+
+    <div class="button">
+      <button type="submit">Contact Us!</button>
+    </div>
+  </form>
+  <div class="block">
+  <div class="doc">
+    <h3>Documentation</h3>
+<p>For this assignment i tried to recreate a contact form. I followed a tutorial on nodemailer and it uses ethereal as a test server to send the form submission i created on the front end. The most difficult part was setting it up to send to an acutal gmail account. The tutorial showed me how but i keep getting a credential error and i think it has to do with the account im registering in my .env file. So for the final submission i used ethereal to create a test email submission to see if the post worked.</p>
+  </div>
+  <div class="reading1">
+    <h3>Towards a library without walls.</h3>
+    <p>Are.na talks about a world where information is accessible to all. A library of information and data without boundaries sounds like what the internet should be. Are.na already took a step towards that with their service operating within a community of artists and culturally-engaged individuals that provide such information and works to their users. The comparison between the Memex and the database of are.na is a bit confusing to me. The concept is the same but what exactly is a Memex? Compared to Are.na, Memex only allows one on one exchanges where Are.na gathers information and works through crowd sourcing which to me seems like a better way in gathering and distributing information to a large audience.</p>
+  </div>
+  <div class="reading2">
+    <h3>Europols Asian city child abuse</h3>
+    <p>Europol’s clever usage of google maps and other resources to geolocate buildings where child abuse occurred really surprised me. He pinpointed exact locations of buildings based off photos and piece it together to figure out which city and mapped the distance from the location of other occurrences happened. Ever since that Europol gained many more tips from supporters of his movement and I think its a great use of the internet and its users to help do something good in third world countries where a lot of information is censored and blocked by the government. Many of the photos shown are various locations in china.</p>
+  </div>
+</div>
+</body>
+</html>
