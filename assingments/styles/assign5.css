@@ -1,0 +1,15 @@
+.stock{
+  border: 1px solid;
+  background-color: green;
+}
+.stockT{
+  border: 1px solid;
+  background-color: green;
+}
+.stockA{
+  border: 1px solid;
+  background-color: green;
+}
+a{
+  color: inherit;
+}
