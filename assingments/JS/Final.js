@@ -3,7 +3,7 @@ $.getJSON("https://api.census.gov/data/2018/pep/population?get=GEONAME,POP&for=u
   function(data){
     console.log(data);
 
-    var input = $("#inc");
+    var input = $("#population");
 
     pop = data["1"]["1"];
 
@@ -15,14 +15,19 @@ var pop;
 
 function buttonInc() {
   setInterval(function(){
-    document.getElementById('inc').value = ++pop;
+    document.getElementById('population').value = ++pop;
   },200);
 }
 
 function buttonDec() {
   setInterval(function(){
-    document.getElementById('inc').value = --pop;
+    document.getElementById('population').value = --pop;
   },200);
+  clearInterval(incTimer);
 }
+
+// if(buttonInc().onclick = true){
+//   clearInterval(decTimer);
+// };
 
 
