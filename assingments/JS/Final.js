@@ -12,22 +12,24 @@ $.getJSON("https://api.census.gov/data/2018/pep/population?get=GEONAME,POP&for=u
 );
 
 var pop;
+var inc;
+var dec;
 
 function buttonInc() {
-  setInterval(function(){
+  inc = setInterval(function(){
     document.getElementById('population').value = ++pop;
   },200);
+  clearInterval(dec);
 }
 
 function buttonDec() {
-  setInterval(function(){
+  dec = setInterval(function(){
     document.getElementById('population').value = --pop;
   },200);
-  clearInterval(incTimer);
+  clearInterval(inc);
 }
 
-// if(buttonInc().onclick = true){
-//   clearInterval(decTimer);
-// };
-
-
+function Stop() {
+  clearInterval(dec);
+  clearInterval(inc);
+}
