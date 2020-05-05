@@ -10,6 +10,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   <script src="JS/Final.js"></script>
+  <link rel="stylesheet" href="styles/Final.css">
 </head>
 <body>
   <header>
@@ -43,15 +44,29 @@
   
     <section class="jumbotron text-center">
       <div class="container">
-        <h1 class="jumbotron-heading">Final Project</h1>
         <p class="lead text-muted"></p>
       </div>
       <div class="album py-5 bg-light">
         <div class="container">
-          <button onclick="buttonInc()">Increase</button>
-          <input type="text" id="population" value="0"></input>
-          <button onclick="buttonDec()">Decrease</button>
-          <button onclick="Stop()">Pause</button>
-        </div>
+          <div id="population"></div>
+          <button onclick="buttonInc()">increase population</button>
+          <button onclick="buttonDec()">decrease population</button>
+          <button onclick="naturalDisaster()">Global Pandemic</button>
+          <!-- <button onclick="pause()">pause</button>
+          <button onclick="start()">start</button> -->
+          <button onclick="increaseBirthRate()">increase birth rate</button>
+          <button onclick="increaseDeathRate()">increase death rate</button>
+          <button onclick="childrenPerWomen()">increase children per women</button>
+          
+          <p>birth rate:</p>
+          <div id="birthRate">0</div>
+          <p>death rate:</p>
+          <div id="deathRate">0</div>
+          <p>Children Per Women:</p>
+          <div id="childRate">0</div>
+                  </div>
       </div>
     </section>
+    </main>
+    </body>
+    </html>
