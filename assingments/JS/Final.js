@@ -16,12 +16,13 @@ $.getJSON("https://api.census.gov/data/2018/pep/population?get=GEONAME,POP&for=u
   }
 );
 
-function buttonInc() {
-  delta = 1;
-}
-
-function buttonDec() {
-  delta = -1;
+function healthcare() {
+  delta = delta+100;
+  deathRate=deathRate-100;
+  if(deathRate < 0){
+    deathRate = 0;
+  }
+  $("#deathRate").html(deathRate);
 }
 
 function increaseBirthRate() {
@@ -49,14 +50,26 @@ function naturalDisaster() {
   $("#deathRate").html(deathRate);
 }
 
+function Famine() {
+  delta = (delta-deathRate) + childRate;
+  childRate=childRate-5;
+  if(childRate < 0){
+    childRate = 0;
+  }
+  $("#childRate").html(childRate);
+  deathRate=deathRate+20;
+  $("#deathRate").html(deathRate);
+}
+
 function Stop() {
   clearInterval(loop);
 }
 
 function loop() {
   pop = pop+delta;
-  console.log('in the loop')
+  console.log(delta)
   $("#population").html(pop);
+  $("#growthrate").html(delta);
 }
 
 
